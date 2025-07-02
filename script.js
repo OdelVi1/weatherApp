@@ -362,16 +362,37 @@ if (API_KEY === 'YOUR_API_KEY_HERE') {
     showError('Please replace YOUR_API_KEY_HERE with your actual OpenWeatherMap API key in the script.js file.');
 }
 // Clear History Functionality
+// Initialize Clear Button when page loads
 document.addEventListener('DOMContentLoaded', function() {
+    initializeClearButton();
+});
+
+function initializeClearButton() {
     const clearBtn = document.getElementById('clearHistoryBtn');
     if (clearBtn) {
         clearBtn.addEventListener('click', clearHistory);
+        console.log('Clear button initialized!');
+    } else {
+        console.log('Clear button not found!');
     }
-});
+}
 
 function clearHistory() {
-    recentCitiesList = [];
+    console.log('Clear history clicked!'); // check
+    
+    // Clear the array
+    if (typeof recentCitiesList !== 'undefined') {
+        recentCitiesList = [];
+    }
+    
+    // Clear localStorage
     localStorage.removeItem('recentCities');
-    recentSearches.style.display = 'none';
+    
+    // Hide the recent searches section
+    const recentSection = document.getElementById('recentSearches');
+    if (recentSection) {
+        recentSection.style.display = 'none';
+    }
+    
     console.log('History cleared successfully!');
 }
