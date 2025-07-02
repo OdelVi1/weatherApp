@@ -361,3 +361,17 @@ function showWeatherDisplay() {
 if (API_KEY === 'YOUR_API_KEY_HERE') {
     showError('Please replace YOUR_API_KEY_HERE with your actual OpenWeatherMap API key in the script.js file.');
 }
+// Clear History Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const clearBtn = document.getElementById('clearHistoryBtn');
+    if (clearBtn) {
+        clearBtn.addEventListener('click', clearHistory);
+    }
+});
+
+function clearHistory() {
+    recentCitiesList = [];
+    localStorage.removeItem('recentCities');
+    recentSearches.style.display = 'none';
+    console.log('History cleared successfully!');
+}
